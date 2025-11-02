@@ -1,0 +1,60 @@
+{"ts": "2025-11-02T11:10:03.970086", "entry": {"ev": "client_connected"}}
+{"ts": "2025-11-02T11:10:03.977054", "entry": {"ev": "autostop_no_clients"}}
+{"ts": "2025-11-02T11:14:37.328414", "entry": {"ev": "client_connected"}}
+{"ts": "2025-11-02T11:14:51.499525", "entry": {"ev": "move_req", "joint": "base", "value": -15.0, "ok": true}}
+{"ts": "2025-11-02T11:14:56.293536", "entry": {"ev": "move_req", "joint": "base", "value": -30.0, "ok": true}}
+{"ts": "2025-11-02T11:14:56.821542", "entry": {"ev": "move_req", "joint": "base", "value": -45.0, "ok": true}}
+{"ts": "2025-11-02T11:14:57.226790", "entry": {"ev": "move_req", "joint": "base", "value": -60.0, "ok": true}}
+{"ts": "2025-11-02T11:14:57.906268", "entry": {"ev": "move_req", "joint": "base", "value": -75.0, "ok": true}}
+{"ts": "2025-11-02T11:14:58.468724", "entry": {"ev": "move_req", "joint": "base", "value": -90.0, "ok": true}}
+{"ts": "2025-11-02T11:14:58.973540", "entry": {"ev": "move_req", "joint": "base", "value": -105.0, "ok": true}}
+{"ts": "2025-11-02T11:15:00.618427", "entry": {"ev": "move_req", "joint": "shoulder", "value": -5.0, "ok": true}}
+{"ts": "2025-11-02T11:15:03.320500", "entry": {"ev": "move_req", "joint": "shoulder", "value": -10.0, "ok": true}}
+{"ts": "2025-11-02T11:15:04.133557", "entry": {"ev": "move_req", "joint": "shoulder", "value": -15.0, "ok": true}}
+{"ts": "2025-11-02T11:15:05.483729", "entry": {"ev": "move_req", "joint": "elbow", "value": -5.0, "ok": true}}
+{"ts": "2025-11-02T11:15:06.185032", "entry": {"ev": "move_req", "joint": "elbow", "value": -10.0, "ok": true}}
+{"ts": "2025-11-02T11:15:06.883999", "entry": {"ev": "move_req", "joint": "elbow", "value": -15.0, "ok": true}}
+{"ts": "2025-11-02T11:15:08.276602", "entry": {"ev": "move_req", "joint": "elbow", "value": -10.0, "ok": true}}
+{"ts": "2025-11-02T11:15:08.751308", "entry": {"ev": "move_req", "joint": "elbow", "value": -5.0, "ok": true}}
+{"ts": "2025-11-02T11:15:10.165240", "entry": {"ev": "move_req", "joint": "elbow", "value": 0.0, "ok": true}}
+{"ts": "2025-11-02T11:15:10.731814", "entry": {"ev": "move_req", "joint": "elbow", "value": 5.0, "ok": true}}
+{"ts": "2025-11-02T11:15:11.071743", "entry": {"ev": "move_req", "joint": "elbow", "value": 10.0, "ok": true}}
+{"ts": "2025-11-02T11:15:11.270264", "entry": {"ev": "move_req", "joint": "elbow", "value": 15.0, "ok": true}}
+{"ts": "2025-11-02T11:15:11.500287", "entry": {"ev": "move_req", "joint": "elbow", "value": 20.0, "ok": true}}
+{"ts": "2025-11-02T11:15:11.726809", "entry": {"ev": "move_req", "joint": "elbow", "value": 25.0, "ok": true}}
+{"ts": "2025-11-02T11:15:11.932256", "entry": {"ev": "move_req", "joint": "elbow", "value": 30.0, "ok": true}}
+{"ts": "2025-11-02T11:15:12.168386", "entry": {"ev": "move_req", "joint": "elbow", "value": 35.0, "ok": true}}
+{"ts": "2025-11-02T11:15:12.347056", "entry": {"ev": "move_req", "joint": "elbow", "value": 39.8, "ok": true}}
+{"ts": "2025-11-02T11:15:12.604881", "entry": {"ev": "move_req", "joint": "elbow", "value": 44.8, "ok": true}}
+{"ts": "2025-11-02T11:15:12.888075", "entry": {"ev": "move_req", "joint": "elbow", "value": 49.8, "ok": true}}
+{"ts": "2025-11-02T11:15:13.146208", "entry": {"ev": "move_req", "joint": "elbow", "value": 54.8, "ok": true}}
+{"ts": "2025-11-02T11:15:13.381021", "entry": {"ev": "move_req", "joint": "elbow", "value": 59.8, "ok": true}}
+{"ts": "2025-11-02T11:15:13.803361", "entry": {"ev": "move_req", "joint": "elbow", "value": 64.8, "ok": true}}
+{"ts": "2025-11-02T11:15:14.066107", "entry": {"ev": "move_req", "joint": "elbow", "value": 69.8, "ok": true}}
+{"ts": "2025-11-02T11:15:14.480910", "entry": {"ev": "move_req", "joint": "elbow", "value": 74.8, "ok": true}}
+{"ts": "2025-11-02T11:15:14.977887", "entry": {"ev": "move_req", "joint": "elbow", "value": 79.8, "ok": true}}
+{"ts": "2025-11-02T11:15:15.386574", "entry": {"ev": "move_req", "joint": "elbow", "value": 84.8, "ok": true}}
+{"ts": "2025-11-02T11:15:16.288579", "entry": {"ev": "move_req", "joint": "shoulder", "value": -10.0, "ok": true}}
+{"ts": "2025-11-02T11:15:16.745253", "entry": {"ev": "move_req", "joint": "shoulder", "value": -5.0, "ok": true}}
+{"ts": "2025-11-02T11:15:17.020605", "entry": {"ev": "move_req", "joint": "shoulder", "value": 0.0, "ok": true}}
+{"ts": "2025-11-02T11:15:17.306647", "entry": {"ev": "move_req", "joint": "shoulder", "value": 5.0, "ok": true}}
+{"ts": "2025-11-02T11:15:17.583716", "entry": {"ev": "move_req", "joint": "shoulder", "value": 10.0, "ok": true}}
+{"ts": "2025-11-02T11:15:17.850917", "entry": {"ev": "move_req", "joint": "shoulder", "value": 15.0, "ok": true}}
+{"ts": "2025-11-02T11:15:18.024829", "entry": {"ev": "move_req", "joint": "shoulder", "value": 20.0, "ok": true}}
+{"ts": "2025-11-02T11:15:18.321485", "entry": {"ev": "move_req", "joint": "shoulder", "value": 25.0, "ok": true}}
+{"ts": "2025-11-02T11:15:19.620188", "entry": {"ev": "move_req", "joint": "base", "value": -120.0, "ok": true}}
+{"ts": "2025-11-02T11:15:20.149192", "entry": {"ev": "move_req", "joint": "base", "value": -135.0, "ok": true}}
+{"ts": "2025-11-02T11:15:20.505614", "entry": {"ev": "move_req", "joint": "base", "value": -150.0, "ok": true}}
+{"ts": "2025-11-02T11:15:20.851193", "entry": {"ev": "move_req", "joint": "base", "value": -165.0, "ok": true}}
+{"ts": "2025-11-02T11:15:22.323826", "entry": {"ev": "move_req", "joint": "base", "value": -150.0, "ok": true}}
+{"ts": "2025-11-02T11:15:22.645324", "entry": {"ev": "move_req", "joint": "base", "value": -135.0, "ok": true}}
+{"ts": "2025-11-02T11:15:24.377963", "entry": {"ev": "grip_req", "val": "open", "ok": true}}
+{"ts": "2025-11-02T11:15:25.377742", "entry": {"ev": "grip_req", "val": "open", "ok": true}}
+{"ts": "2025-11-02T11:15:27.310920", "entry": {"ev": "grip_req", "val": "close", "ok": true}}
+{"ts": "2025-11-02T11:15:29.214774", "entry": {"ev": "grip_req", "val": "close", "ok": true}}
+{"ts": "2025-11-02T11:15:31.438191", "entry": {"ev": "move_req", "joint": "wrist", "value": -10.0, "ok": true}}
+{"ts": "2025-11-02T11:15:32.440180", "entry": {"ev": "move_req", "joint": "wrist", "value": -20.0, "ok": true}}
+{"ts": "2025-11-02T11:15:34.927366", "entry": {"ev": "move_req", "joint": "wrist", "value": -30.0, "ok": true}}
+{"ts": "2025-11-02T11:15:54.919109", "entry": {"ev": "estop", "by": "client"}}
+{"ts": "2025-11-02T11:15:57.985895", "entry": {"ev": "estop", "by": "client"}}
+{"ts": "2025-11-02T11:18:48.748153", "entry": {"ev": "autostop_no_clients"}}

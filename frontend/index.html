@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>TechExpo — Control UI (Simulated)</title>
+  <style>
+    body{font-family:Inter,system-ui,Arial;background:#f4f7fb;margin:0;padding:18px}
+    .card{max-width:1100px;margin:0 auto;background:#fff;padding:14px;border-radius:8px;box-shadow:0 8px 30px rgba(20,30,70,0.06)}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .status{display:flex;gap:10px;align-items:center}
+    .dot{width:12px;height:12px;border-radius:50%}
+    .dot.ok{background:#2ecc71}.dot.bad{background:#e74c3c}
+    main{display:flex;gap:16px;margin-top:12px}
+    .left{flex:1}
+    .right{width:420px}
+    canvas{border-radius:6px;background:#081226;display:block}
+    .controls{background:#f2f6fb;padding:10px;border-radius:6px}
+    .jog{display:flex;gap:8px;align-items:center;margin:6px 0}
+    button{padding:8px 10px;border-radius:6px;border:none;background:#083c6b;color:#fff;cursor:pointer}
+    .estop{background:#e53935;padding:10px 12px;font-weight:700;width:100%}
+    pre{background:#0b1020;color:#cfeaff;padding:8px;border-radius:6px;overflow:auto}
+    .log{background:#0b1020;color:#cfeaff;padding:8px;border-radius:6px;height:180px;overflow:auto;font-family:monospace;font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <h2>TechExpo — Control UI (Simulated)</h2>
+      <div class="status"><div id="dot" class="dot bad"></div><div id="stat">Disconnected</div></div>
+    </header>
+
+    <main>
+      <section class="left">
+        <canvas id="video" width="640" height="360"></canvas>
+        <div style="margin-top:10px">
+          <h4>Telemetry</h4>
+          <div id="tele">No telemetry yet.</div>
+        </div>
+      </section>
+
+      <section class="right">
+        <div class="controls">
+          <h4>Controls</h4>
+          <div class="jog"><div>Base</div><button onclick="move('base',-15)">◀</button><button onclick="move('base',15)">▶</button></div>
+          <div class="jog"><div>Shoulder</div><button onclick="move('shoulder',5)">▲</button><button onclick="move('shoulder',-5)">▼</button></div>
+          <div class="jog"><div>Elbow</div><button onclick="move('elbow',5)">▲</button><button onclick="move('elbow',-5)">▼</button></div>
+          <div class="jog"><div>Wrist</div><button onclick="move('wrist',10)">⟲</button><button onclick="move('wrist',-10)">⟳</button></div>
+          <div class="jog"><div>Gripper</div><button onclick="grip('open')">Open</button><button onclick="grip('close')">Close</button></div>
+          <div style="margin-top:8px"><button class="estop" onclick="estop()">EMERGENCY STOP</button></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <h4>Log</h4>
+          <div id="log" class="log"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer style="margin-top:12px;text-align:center;color:#666;font-size:13px">
+      Safe simulated demo — no hardware. Demo token: <b>demo-token-123</b>
+    </footer>
+  </div>
+
+<script>
+const WS_URL = "ws://localhost:8765/ws";
+const TOKEN = "demo-token-123";
+let ws = null;
+let lastState = null;
+const logel = id("log"), stat = id("stat"), dot = id("dot"), tele = id("tele"), c = id("video"), ctx = c.getContext("2d");
+
+function id(x){return document.getElementById(x)}
+function append(s){ logel.innerHTML = new Date().toLocaleTimeString() + " - " + s + "<br>" + logel.innerHTML }
+
+function connect(){
+  ws = new WebSocket(WS_URL);
+  append("Connecting to backend...");
+  ws.onopen = ()=>{ append("socket open — sending auth"); ws.send(JSON.stringify({type:"auth", token:TOKEN})); }
+  ws.onmessage = (e)=>{ try { const msg = JSON.parse(e.data); handleMsg(msg); } catch(err){ append("err parse"); } }
+  ws.onclose = ()=>{ append("socket closed"); stat.textContent="Disconnected"; dot.className="dot bad" }
+  ws.onerror = (e)=>{ append("socket error"); }
+}
+function handleMsg(m){
+  if(m.type==="auth_ok"){ append("Auth OK"); stat.textContent="Connected"; dot.className="dot ok"; return; }
+  if(m.type==="telemetry"){ lastState = m.state; renderTelemetry(m.state); return; }
+  if(m.type==="video_frame"){ renderFrame(m.frame_id); return; }
+  if(m.type==="ack"){ append("ACK: " + JSON.stringify(m)); return; }
+  if(m.type==="error"){ append("ERR: " + JSON.stringify(m)); return; }
+}
+function sendCmd(cmd){ if(!ws || ws.readyState!==1){ append("Not connected"); return } ws.send(JSON.stringify({type:"cmd", command:cmd})); append("Sent: "+JSON.stringify(cmd)); }
+
+function move(j,v){ // compute new target as current pos + v
+  const cur = (lastState && lastState.positions && lastState.positions[j])? lastState.positions[j] : 0;
+  const nv = cur + v;
+  sendCmd({action:"move", joint:j, value:nv});
+}
+function grip(v){ sendCmd({action:"grip", value:v}); }
+function estop(){ sendCmd({action:"estop"}); }
+
+function renderTelemetry(s){
+  tele.innerHTML = "<b>Battery:</b> "+(s.health.battery||0).toFixed(2)+"% &nbsp; <b>Temp:</b> "+(s.health.temp_c||0).toFixed(2)+"°C <br><b>Estopped:</b> "+s.estopped+" &nbsp; <b>Frame:</b> "+s.frame_id;
+  tele.innerHTML += "<pre>"+JSON.stringify(s.positions, null, 2)+"</pre>"
+}
+
+function renderFrame(fid){
+  // simple animated placeholder
+  ctx.fillStyle="#071322"; ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle="#9ad3ff";
+  ctx.font = "14px monospace";
+  ctx.fillText("Simulated frame #"+fid, 12, 26);
+  // draw arm 2D approx
+  const pos = (lastState && lastState.positions) ? lastState.positions : {shoulder:0,elbow:0,gripper:0};
+  const centerX = 120, baseY = 300;
+  const len1 = 90, len2 = 75;
+  const ang1 = (pos.shoulder||0) * Math.PI/180;
+  const ang2 = (pos.elbow||0) * Math.PI/180;
+  let x1 = centerX + Math.cos(ang1)*len1;
+  let y1 = baseY - Math.sin(ang1)*len1;
+  let x2 = x1 + Math.cos(ang1+ang2)*len2;
+  let y2 = y1 - Math.sin(ang1+ang2)*len2;
+  ctx.strokeStyle="#ffd34d"; ctx.lineWidth=8; ctx.beginPath(); ctx.moveTo(centerX,baseY); ctx.lineTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  ctx.fillStyle="#ff6b6b"; ctx.fillText("Grip "+((pos.gripper||0).toFixed(0))+"%", x2+10, y2);
+}
+
+connect();
+</script>
+</body>
+</html>
